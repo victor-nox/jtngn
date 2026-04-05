@@ -1,0 +1,85 @@
+title: École
+
+tabs:
+  # General information
+  general:
+    label: Informations générales
+    icon: info
+    fields:
+      description:
+        label: Description
+        type: blocks
+        required: true
+
+      contact_email:
+        label: Email de l'école
+        type: email
+
+      contact_phone:
+        label: Téléphone
+        type: tel
+
+  # Team
+  team:
+    label: Équipe
+    icon: users
+    fields:
+      team:
+        label: Équipe pédagogique
+        type: structure
+        fields:
+          name:
+            label: Nom
+            type: text
+            required: true
+
+          role:
+            label: Fonction
+            type: text
+            required: true
+            placeholder: "Ex: Directeur, Maître"
+
+          class:
+            label: Classe
+            type: text
+            placeholder: "Ex: CP-CE1"
+
+          bio:
+            label: Biographie courte
+            type: textarea
+
+          photo:
+            label: Photo
+            type: files
+            max: 1
+            accept: image/*
+
+  # Schedule & Projects
+  pedagogy:
+    label: Pédagogie
+    icon: book
+    fields:
+      schedule:
+        label: Horaires
+        type: textarea
+        required: true
+
+      pedagogical_projects:
+        label: Projets pédagogiques
+        type: textarea
+        help: "Exemples: sorties, projets annuels, partenariats"
+
+      activities:
+        label: Activités et ateliers
+        type: textarea
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

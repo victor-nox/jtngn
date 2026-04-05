@@ -1,0 +1,59 @@
+title: Article
+
+tabs:
+  # Main content
+  content:
+    label: Contenu
+    icon: document
+    fields:
+      date:
+        label: Date de publication
+        type: date
+        required: true
+
+      author:
+        label: Auteur
+        type: text
+
+      category:
+        label: Catégorie
+        type: select
+        options:
+          mairie: Mairie
+          travaux: Travaux
+          vie-locale: Vie locale
+          ecole: École
+          environnement: Environnement
+        required: true
+
+      cover_image:
+        label: Image de couverture
+        type: files
+        max: 1
+        accept: image/*
+
+      text:
+        label: Texte
+        type: blocks
+        required: true
+
+  # Related content
+  related:
+    label: Documents liés
+    icon: attachment
+    fields:
+      related_documents:
+        label: Fichiers à télécharger
+        type: files
+        accept: .pdf,.doc,.docx,.xls,.xlsx,.zip
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

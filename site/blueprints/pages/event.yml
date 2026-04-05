@@ -1,0 +1,57 @@
+title: Événement
+
+tabs:
+  # Event details
+  details:
+    label: Détails
+    icon: calendar
+    fields:
+      event_date:
+        label: Date
+        type: date
+        required: true
+
+      event_time_start:
+        label: Heure de début
+        type: time
+
+      event_time_end:
+        label: Heure de fin
+        type: time
+
+      location:
+        label: Lieu
+        type: text
+        required: true
+
+      cover_image:
+        label: Image
+        type: files
+        max: 1
+        accept: image/*
+
+  # Content
+  content:
+    label: Contenu
+    icon: document
+    fields:
+      text:
+        label: Description
+        type: blocks
+        required: true
+
+      registration_link:
+        label: Lien d'inscription
+        type: url
+        help: URL vers un formulaire d'inscription (optionnel)
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

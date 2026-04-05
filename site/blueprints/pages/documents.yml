@@ -1,0 +1,50 @@
+title: Bibliothèque de documents
+
+sections:
+  content:
+    type: fields
+    fields:
+      intro_text:
+        label: Texte d'introduction
+        type: textarea
+
+      documents:
+        label: Documents
+        type: structure
+        fields:
+          title:
+            label: Titre du document
+            type: text
+            required: true
+
+          category:
+            label: Catégorie
+            type: select
+            options:
+              administratif: Administratif
+              urbanisme: Urbanisme
+              rapports: Rapports
+              budgets: Budgets
+              divers: Divers
+
+          file:
+            label: Fichier
+            type: files
+            max: 1
+            accept: .pdf,.doc,.docx,.xls,.xlsx,.zip
+            required: true
+
+          description:
+            label: Description
+            type: textarea
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

@@ -1,0 +1,37 @@
+{
+  "name": "jettingen/website",
+  "description": "Jettingen.fr - Website for the commune of Jettingen, Haut-Rhin, Alsace",
+  "type": "project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Jettingen Commune",
+      "email": "contact@jettingen.fr"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "getkirby/cms": "^5.0",
+    "getkirby/pluginkit": "^1.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "suggest": {
+    "tobimori/kirby-seo": "SEO management for Kirby",
+    "bnomei/kirby-uniform": "Form handling with email, honeypot, and spam protection",
+    "timnarr/kirby-imagex": "Advanced image processing plugin"
+  },
+  "config": {
+    "allow-plugins": {
+      "getkirby/cms-plugin": true,
+      "cerdic/css-pretty-print": true
+    }
+  },
+  "scripts": {
+    "start": "php -S localhost:8000 kirby/router.php",
+    "lint": "phpcs --standard=PSR12 site/",
+    "format": "phpcbf --standard=PSR12 site/"
+  }
+}

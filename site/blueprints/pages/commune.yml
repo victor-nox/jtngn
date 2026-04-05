@@ -1,0 +1,43 @@
+title: La Commune
+
+sections:
+  content:
+    type: fields
+    fields:
+      # Main content with blocks
+      text:
+        label: Contenu
+        type: blocks
+        required: true
+
+      # Sidebar facts
+      sidebar_facts:
+        label: Informations clés
+        type: structure
+        fields:
+          label:
+            label: Libellé
+            type: text
+            required: true
+
+          value:
+            label: Valeur
+            type: text
+            required: true
+
+      # Gallery
+      gallery:
+        label: Galerie
+        type: files
+        accept: image/*
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

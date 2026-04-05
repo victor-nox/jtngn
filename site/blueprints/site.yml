@@ -1,0 +1,74 @@
+title: Paramètres du site
+
+fields:
+  # General Information
+  title:
+    label: Titre du site
+    type: text
+    required: true
+
+  description:
+    label: Description du site
+    type: text
+    required: true
+
+  logo:
+    label: Logo
+    type: files
+    max: 1
+    accept: image/*
+
+  # Contact Information
+  address:
+    label: Adresse
+    type: textarea
+    required: true
+
+  phone:
+    label: Téléphone
+    type: tel
+    required: true
+
+  email:
+    label: Email principal
+    type: email
+    required: true
+
+  # Opening Hours
+  opening_hours:
+    label: Horaires d'ouverture
+    type: textarea
+    help: Format libre (ex: Lun-Ven 9h-12h)
+
+  # Social Media
+  social_media:
+    label: Réseaux sociaux
+    type: structure
+    fields:
+      platform:
+        label: Plateforme
+        type: select
+        options:
+          facebook: Facebook
+          twitter: Twitter
+          instagram: Instagram
+          linkedin: LinkedIn
+          youtube: YouTube
+      url:
+        label: URL
+        type: url
+        required: true
+
+  # Footer
+  footer_text:
+    label: Texte du pied de page
+    type: textarea
+
+  # SEO
+  seo_keywords:
+    label: Mots-clés (SEO)
+    type: text
+
+  seo_author:
+    label: Auteur
+    type: text

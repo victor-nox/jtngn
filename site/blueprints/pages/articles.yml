@@ -1,0 +1,23 @@
+title: Actualités
+
+sections:
+  content:
+    type: fields
+    fields:
+      intro_text:
+        label: Texte d'introduction
+        type: textarea
+        help: Texte affiché au-dessus de la liste des articles
+
+columns:
+  - width: 2/3
+    sections:
+      pages:
+        type: pages
+        label: Articles
+        help: Les articles enfants sont listés automatiquement
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

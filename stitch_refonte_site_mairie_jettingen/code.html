@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jettingen - Village d'Alsace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;700&amp;family=Public+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e4",
+                    "on-tertiary-fixed-variant": "#1e477b",
+                    "primary-fixed": "#bceecf",
+                    "on-tertiary-fixed": "#001c3b",
+                    "tertiary": "#0b3b6d",
+                    "tertiary-fixed-dim": "#a7c8ff",
+                    "primary": "#14422d",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#2d5a43",
+                    "tertiary-fixed": "#d5e3ff",
+                    "surface-container": "#efeeea",
+                    "on-primary-fixed": "#002112",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ed",
+                    "surface-container-highest": "#e3e2df",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2f312e",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "outline-variant": "#c0c9c1",
+                    "on-surface-variant": "#414943",
+                    "tertiary-container": "#2b5286",
+                    "on-secondary-fixed": "#360f00",
+                    "surface-variant": "#e3e2df",
+                    "secondary-container": "#fd9a6f",
+                    "surface": "#faf9f5",
+                    "on-tertiary-container": "#a3c6ff",
+                    "surface-dim": "#dbdad6",
+                    "inverse-primary": "#a1d1b4",
+                    "background": "#faf9f5",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-container": "#76300d",
+                    "secondary": "#964824",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "secondary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "surface-bright": "#faf9f5",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#224f39",
+                    "surface-container-low": "#f4f4f0",
+                    "outline": "#717973",
+                    "secondary-fixed": "#ffdbcd",
+                    "surface-tint": "#3a674f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Public Sans"],
+                    "label": ["Public Sans"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 12px 32px -4px rgba(27, 28, 26, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<header class="bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-md top-0 sticky z-50 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-serif text-emerald-950 dark:text-emerald-100">Jettingen</span>
+</div>
+<nav class="hidden md:flex items-center space-x-8 font-serif tracking-tight font-semibold">
+<a class="text-orange-700 dark:text-orange-400 border-b-2 border-orange-700 pb-1" href="#">Accueil</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200" href="#">Commune</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200" href="#">Mairie</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200" href="#">Actualités</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200" href="#">Documents</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-emerald-900 dark:text-emerald-500 scale-95 transition-transform duration-150" data-icon="search">search</button>
+<button class="material-symbols-outlined text-emerald-900 dark:text-emerald-500 scale-95 transition-transform duration-150" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<aside class="max-w-7xl mx-auto px-8 mt-4">
+<div class="bg-secondary-fixed text-on-secondary-fixed p-4 rounded-xl flex items-center justify-between editorial-shadow">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-medium">Travaux rue de la Mairie : Circulation alternée du 15 au 22 Octobre.</p>
+</div>
+<button class="material-symbols-outlined hover:bg-black/5 rounded-full p-1 transition-colors" data-icon="close">close</button>
+</div>
+</aside>
+<section class="max-w-7xl mx-auto px-8 mt-6">
+<div class="relative h-[450px] w-full rounded-3xl overflow-hidden flex items-end">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="picturesque Alsatian village street with traditional half-timbered houses, colorful flowers, and cobblestone paths in warm afternoon sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqxn2NTpoMN81WVLlqxEiRTy3GztWhFSrSrN_d1yggYKDWYCZh06gAPayJOLhI7PfKAQwXaKSy13CkSl7AI0OhZKRbRws2R1dEvJkUp5DAe0jSVF_vOi3oEJpcy2XOcJuc9XEhUmHg6s26tTgtDEpe8zisHNRNHl7X4kJF-MHUVxDfiR1Ecj78_y8y9sKDSBvOQ0ZSwePdkxKHdD_nPzlNSvU5ioWMywCQC75s5TQh8GSyI5esyvIcAJHJ340iGjz1WTQ7e04kuMk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+</div>
+<div class="relative z-10 p-10 w-full text-on-primary">
+<h1 class="font-headline text-4xl md:text-6xl font-bold tracking-tight mb-4 max-w-3xl leading-tight">
+                    Bienvenue à Jettingen - Village d'Alsace
+                </h1>
+<button class="bg-primary hover:bg-surface-tint text-on-primary px-8 py-3 rounded-md font-medium transition-all flex items-center gap-2 editorial-shadow">
+                    Latest News <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-8 mt-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#">
+<div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="description">description</span>
+</div>
+<div>
+<h3 class="font-headline text-lg font-semibold group-hover:text-white">État Civil</h3>
+<p class="text-on-surface-variant group-hover:text-white/80 text-xs">Actes, mariages, naissances</p>
+</div>
+</a>
+<a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#">
+<div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="architecture">architecture</span>
+</div>
+<div>
+<h3 class="font-headline text-lg font-semibold group-hover:text-white">Urbanisme</h3>
+<p class="text-on-surface-variant group-hover:text-white/80 text-xs">PLU, permis de construire</p>
+</div>
+</a>
+<a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#">
+<div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="event_seat">event_seat</span>
+</div>
+<div>
+<h3 class="font-headline text-lg font-semibold group-hover:text-white">Salle des Fêtes</h3>
+<p class="text-on-surface-variant group-hover:text-white/80 text-xs">Réservations et tarifs</p>
+</div>
+</a>
+<a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#">
+<div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white" data-icon="school">school</span>
+</div>
+<div>
+<h3 class="font-headline text-lg font-semibold group-hover:text-white">École</h3>
+<p class="text-on-surface-variant group-hover:text-white/80 text-xs">Cantine et périscolaire</p>
+</div>
+</a>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-8 mt-8">
+<div class="bg-stone-100/50 dark:bg-stone-900/50 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
+<div class="flex-shrink-0">
+<h2 class="text-emerald-800 dark:text-emerald-400 font-bold text-lg">La Commune</h2>
+<p class="text-stone-500 dark:text-stone-400 text-sm">Découvrir Jettingen</p>
+</div>
+<div class="flex-1 flex flex-wrap gap-4">
+<a class="bg-white dark:bg-stone-800 text-emerald-900 dark:text-emerald-100 font-bold shadow-sm px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 transition-all text-sm" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="history_edu">history_edu</span> Histoire
+                </a>
+<a class="text-stone-500 dark:text-stone-400 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all text-sm" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="group">group</span> Élus
+                </a>
+<a class="text-stone-500 dark:text-stone-400 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all text-sm" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="account_balance">account_balance</span> Patrimoine
+                </a>
+<a class="text-stone-500 dark:text-stone-400 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all text-sm" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span> Services
+                </a>
+</div>
+</div>
+</section>
+<main class="max-w-7xl mx-auto px-8 py-12">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="lg:col-span-2 space-y-12">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline text-3xl font-semibold">Dernières Actualités</h2>
+<a class="text-secondary font-medium hover:underline" href="#">Voir tout</a>
+</div>
+<div class="space-y-10">
+<article class="flex flex-col md:flex-row gap-8 group">
+<div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="a rustic village community garden with wooden planters, vibrant sunflowers, and residents chatting in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdNcGb0XuBPsDHCTqGanMjkQzqYrtp4HSrkv1hxqpnkaj-jDh5GcY3B0XqFTzinrwb1MqZ_mGncvHOpiIi2Bj5ig0vgddgkWVhdTsz2cdGX_b0CcyDk11nKKlTc6tK_0lk1Q1tDLyZL119Z12qNb0p7WLEclUdXwLaJc7eK7G-MaoyDuYKRdvomOHwEG0yEsIAR9t1U6K84jtqvB-1nriG7LiW9H-MFqckUGT3gYSC6fy4xufEdfuO-VjRZY5WqcTaLOg6mBO-DdLp"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="text-label-md text-secondary font-medium mb-1">12 OCTOBRE 2024</span>
+<h3 class="font-headline text-2xl font-semibold mb-3 leading-snug">Inauguration du Jardin Partagé</h3>
+<p class="text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">
+                                Venez découvrir le nouvel espace de convivialité du village. Un projet porté par le conseil municipal des jeunes...
+                            </p>
+<button class="text-primary font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<article class="flex flex-col md:flex-row gap-8 group">
+<div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="autumn local farmers market with fresh produce, honey jars, and pumpkins on wooden crates under a clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4QomZ3MbdEti0N8l9y3eWj5fywhRvLOS8YXWN22IgKRgmxsAl1Y6pUyInikypVSmwNWgpeZBI3Sjfmx6ykHgCR36dbJM-ZXpsJZI_9JxdYsz2-sBPfwdTF9KJbOi0FI1YNyzHXXpyg9wl1hVsCsB87cPj1tYqU7bl9LX99q6kF5tdtN8Nh7Pl5kRuAVQ5nK5KRfgNk5-85ucU0nq3N7OTcqJ8CcsQuxPo_rauISxZ9pER1bI2V8JKOiZI75PsHlSFLNrtuGasAai5"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="text-label-md text-secondary font-medium mb-1">08 OCTOBRE 2024</span>
+<h3 class="font-headline text-2xl font-semibold mb-3 leading-snug">Marché du Terroir d'Automne</h3>
+<p class="text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">
+                                Le dimanche 27 octobre, la place de la mairie accueillera les producteurs locaux. Au programme : dégustations et artisanat...
+                            </p>
+<button class="text-primary font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<article class="flex flex-col md:flex-row gap-8 group">
+<div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="historical architecture blueprint and old photographs of an Alsatian village house on a wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZDFV342aUlLGLRE7aNSJ1LHGdqvVp83NdPdkRZNqol26VowKlRQwAWIMLxa_QJG5SsRfvlcvBN2ZnifgqnZcsF1oQ_Mcb5rxvRW1rh7TSux1fHDqrJQiFQ5NdIOvz-EqO5vDmVt8q6t_EghnTgQRYaM6AEYPYsNPpebpYq88CKDD19Y90S0Zch2oCzpPAs1fjnF9VFm7kU0M5Pw8YsMpueUjC4ypUSEsUPZ56vENPveWoEEm8R0-esZwdFcEM85lPELv8Jg8D57nS"/>
+</div>
+<div class="flex flex-col justify-center">
+<span class="text-label-md text-secondary font-medium mb-1">05 OCTOBRE 2024</span>
+<h3 class="font-headline text-2xl font-semibold mb-3 leading-snug">Restauration du Patrimoine Local</h3>
+<p class="text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">
+                                L'ancienne grange dîmière fera l'objet d'une restauration complète. Le projet vise à transformer ce lieu historique...
+                            </p>
+<button class="text-primary font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+</div>
+<div class="space-y-8">
+<div class="bg-surface-container-high rounded-xl p-8">
+<h2 class="font-headline text-2xl font-semibold mb-8 border-b border-outline-variant/30 pb-4">Agenda du Village</h2>
+<div class="space-y-6">
+<div class="flex gap-4 group cursor-pointer">
+<div class="bg-secondary-fixed text-on-secondary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+<span class="text-[10px] uppercase">OCT</span>
+<span class="text-base">19</span>
+</div>
+<div>
+<h4 class="font-bold text-base leading-tight group-hover:text-secondary transition-colors">Nettoyage d'Automne</h4>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 08h30 - Place
+                                </p>
+</div>
+</div>
+<div class="flex gap-4 group cursor-pointer">
+<div class="bg-primary-fixed text-on-primary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+<span class="text-[10px] uppercase">OCT</span>
+<span class="text-base">22</span>
+</div>
+<div>
+<h4 class="font-bold text-base leading-tight group-hover:text-secondary transition-colors">Conseil Municipal</h4>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 20h00 - Mairie
+                                </p>
+</div>
+</div>
+<div class="flex gap-4 group cursor-pointer">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+<span class="text-[10px] uppercase">NOV</span>
+<span class="text-base">01</span>
+</div>
+<div>
+<h4 class="font-bold text-base leading-tight group-hover:text-secondary transition-colors">Commémoration</h4>
+<p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 10h30 - Monument
+                                </p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 border-2 border-primary text-primary font-bold rounded-md hover:bg-primary hover:text-white transition-all text-sm">
+                        Voir tout l'agenda
+                    </button>
+</div>
+<div class="bg-tertiary p-8 rounded-xl text-on-tertiary space-y-4 editorial-shadow">
+<h3 class="font-headline text-xl font-bold">Le Kiosque Numérique</h3>
+<p class="text-on-tertiary-container text-sm leading-relaxed">
+                        Téléchargez le dernier bulletin communal et accédez aux archives de la vie du village.
+                    </p>
+<a class="inline-flex items-center gap-2 font-bold text-sm bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-all w-full justify-center" href="#">
+<span class="material-symbols-outlined">download</span> Bulletin Municipal (PDF)
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-stone-200 dark:bg-stone-950 full-width mt-12 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-12 max-w-7xl mx-auto font-sans text-sm leading-relaxed">
+<div class="space-y-4">
+<span class="font-serif text-lg font-bold text-emerald-950 dark:text-emerald-100">Jettingen</span>
+<p class="text-stone-600 dark:text-stone-400">
+                    67250 Bas-Rhin, France<br/>
+                    Tél : 03 88 XX XX XX<br/>
+                    Email : mairie@jettingen.fr
+                </p>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-emerald-900 dark:text-emerald-500">Mairie</h4>
+<ul class="space-y-2">
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Horaires d'ouverture</a></li>
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Conseil Municipal</a></li>
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Démarches en ligne</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-emerald-900 dark:text-emerald-500">Découvrir</h4>
+<ul class="space-y-2">
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Histoire du village</a></li>
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Patrimoine</a></li>
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Tourisme</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-emerald-900 dark:text-emerald-500">Informations</h4>
+<ul class="space-y-2">
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Accessibilité (RGAA)</a></li>
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Mentions Légales</a></li>
+<li><a class="text-stone-600 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors underline-offset-4" href="#">Plan du Site</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-12 mt-12 pt-8 border-t border-stone-300 dark:border-stone-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-stone-500 dark:text-stone-400 text-xs">© 2024 Mairie de Jettingen - Village d'Alsace. Tous droits réservés.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-emerald-900 dark:text-emerald-500 cursor-pointer hover:scale-110 transition-transform">social_leaderboard</span>
+<span class="material-symbols-outlined text-emerald-900 dark:text-emerald-500 cursor-pointer hover:scale-110 transition-transform">mail</span>
+</div>
+</div>
+</footer>
+
+</body></html>

@@ -1,0 +1,110 @@
+title: Accueil
+
+tabs:
+  # Héro Section
+  hero:
+    label: Héro
+    icon: image
+    fields:
+      hero_title:
+        label: Titre du héro
+        type: text
+        required: true
+        placeholder: Bienvenue à Jettingen
+
+      hero_subtitle:
+        label: Sous-titre
+        type: text
+        placeholder: La vie au cœur de l'Alsace
+
+      hero_image:
+        label: Image du héro
+        type: files
+        max: 1
+        accept: image/*
+        required: true
+
+      hero_cta_text:
+        label: Texte du bouton d'action
+        type: text
+        placeholder: Découvrir
+
+      hero_cta_link:
+        label: Lien du bouton
+        type: pages
+
+  # Quick Links
+  quick_links:
+    label: Accès rapide
+    icon: bolt
+    fields:
+      quick_links:
+        label: Raccourcis
+        type: structure
+        fields:
+          icon:
+            label: Icône
+            type: select
+            options:
+              document: Document
+              calendar: Calendrier
+              users: Personnes
+              home: Bâtiment
+              info: Information
+              phone: Téléphone
+
+          title:
+            label: Titre
+            type: text
+            required: true
+
+          description:
+            label: Description courte
+            type: text
+
+          url:
+            label: Lien (page ou URL externe)
+            type: text
+            required: true
+
+  # News
+  news:
+    label: Actualités
+    icon: newspaper
+    fields:
+      news_title:
+        label: Titre de la section
+        type: text
+        default: Dernières actualités
+
+      news_limit:
+        label: Nombre d'articles à afficher
+        type: number
+        default: 3
+
+  # Info Section
+  info:
+    label: Infos
+    icon: info
+    fields:
+      info_title:
+        label: Titre
+        type: text
+        placeholder: Vous cherchez une information ?
+
+      info_text:
+        label: Texte
+        type: textarea
+        placeholder: Une description pour guider les visiteurs
+
+# Standard page settings
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

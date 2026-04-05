@@ -1,0 +1,97 @@
+title: Salle des fêtes
+
+tabs:
+  # General information
+  general:
+    label: Informations générales
+    icon: info
+    fields:
+      description:
+        label: Description
+        type: blocks
+        required: true
+
+      capacity:
+        label: Capacité (nombre de personnes)
+        type: number
+
+      area:
+        label: Superficie (m²)
+        type: number
+
+  # Equipment
+  equipment:
+    label: Équipements
+    icon: cog
+    fields:
+      equipment:
+        label: Liste des équipements
+        type: structure
+        fields:
+          name:
+            label: Nom de l'équipement
+            type: text
+            required: true
+
+          description:
+            label: Description
+            type: textarea
+
+  # Pricing
+  pricing:
+    label: Tarifs
+    icon: tags
+    fields:
+      tarifs:
+        label: Tarifs
+        type: structure
+        fields:
+          type:
+            label: Type de location
+            type: text
+            required: true
+            placeholder: "Ex: Demi-journée, Journée complète"
+
+          price:
+            label: Prix
+            type: text
+            required: true
+            placeholder: "Ex: 150 €"
+
+          details:
+            label: Détails
+            type: textarea
+
+  # Booking & Gallery
+  booking:
+    label: Réservation & Galerie
+    icon: image
+    fields:
+      reservation_info:
+        label: Informations de réservation
+        type: textarea
+        required: true
+
+      reservation_contact:
+        label: Contact pour réserver
+        type: email
+
+      reservation_phone:
+        label: Téléphone
+        type: tel
+
+      gallery:
+        label: Galerie de photos
+        type: files
+        accept: image/*
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info

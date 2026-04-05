@@ -1,0 +1,41 @@
+# Kirby CMS
+kirby/
+vendor/
+storage/
+.env
+.env.local
+
+# Content cache
+site/content/*
+!site/content/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (if using build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Composer
+composer.lock
+
+# Logs
+*.log
+
+# IDE
+.php_cs.cache
+.phpunit.result.cache
+
+# Temporary files
+tmp/
+temp/
+*.tmp

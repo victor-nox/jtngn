@@ -1,0 +1,47 @@
+title: Contact
+
+sections:
+  content:
+    type: fields
+    fields:
+      intro_text:
+        label: Texte d'introduction
+        type: textarea
+        required: true
+
+      contact_form_note:
+        label: Note sur le formulaire
+        type: text
+        help: "Indice : ce formulaire fonctionne avec Kirby Uniform (plugin)"
+
+      contact_phone:
+        label: Téléphone à afficher
+        type: tel
+
+      contact_email:
+        label: Email de contact
+        type: email
+
+      contact_address:
+        label: Adresse
+        type: textarea
+
+      opening_hours:
+        label: Horaires
+        type: textarea
+
+      map_embed:
+        label: Code d'intégration de carte
+        type: textarea
+        help: Code HTML d'intégration d'une carte (iframe OpenStreetMap ou Google Maps)
+
+columns:
+  - width: 2/3
+    sections:
+      content:
+        type: pages
+
+  - width: 1/3
+    sections:
+      info:
+        type: info
