@@ -1,1429 +1,1007 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jettingen - Commune du Sundgau</title>
-    <style>
-        /* ===== CSS Variables & Reset ===== */
-        :root {
-            --primary: #5B7F3B;
-            --secondary: #8B6F47;
-            --accent: #D4A853;
-            --bg-light: #FAF8F5;
-            --text-dark: #2C2C2C;
-            --text-light: #F5F3F0;
-            --card-bg: #F0EDE8;
-            --border-warm: #E8E3DE;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --shadow-dark: rgba(0, 0, 0, 0.15);
-
-            font-size: 16px;
-            scroll-behavior: smooth;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-light: #1A1A1A;
-                --text-dark: #E8E6E1;
-                --text-light: #2C2C2C;
-                --card-bg: #2A2A2A;
-                --border-warm: #404040;
-                --shadow: rgba(0, 0, 0, 0.3);
-                --shadow-dark: rgba(0, 0, 0, 0.5);
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jettingen - Commune du Sundgau</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;700&amp;family=Public+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e4",
+                    "on-tertiary-fixed-variant": "#1e477b",
+                    "primary-fixed": "#bceecf",
+                    "on-tertiary-fixed": "#001c3b",
+                    "tertiary": "#0b3b6d",
+                    "tertiary-fixed-dim": "#a7c8ff",
+                    "primary": "#14422d",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#2d5a43",
+                    "tertiary-fixed": "#d5e3ff",
+                    "surface-container": "#efeeea",
+                    "on-primary-fixed": "#002112",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ed",
+                    "surface-container-highest": "#e3e2df",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2f312e",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "outline-variant": "#c0c9c1",
+                    "on-surface-variant": "#414943",
+                    "tertiary-container": "#2b5286",
+                    "on-secondary-fixed": "#360f00",
+                    "surface-variant": "#e3e2df",
+                    "secondary-container": "#fd9a6f",
+                    "surface": "#faf9f5",
+                    "on-tertiary-container": "#a3c6ff",
+                    "surface-dim": "#dbdad6",
+                    "inverse-primary": "#a1d1b4",
+                    "background": "#faf9f5",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-container": "#76300d",
+                    "secondary": "#964824",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "secondary-fixed-dim": "#ffb597",
+                    "on-secondary-fixed-variant": "#77320e",
+                    "surface-bright": "#faf9f5",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#224f39",
+                    "surface-container-low": "#f4f4f0",
+                    "outline": "#717973",
+                    "secondary-fixed": "#ffdbcd",
+                    "surface-tint": "#3a674f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Public Sans"],
+                    "label": ["Public Sans"]
             }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* ===== Typography ===== */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        h1 { font-size: 2.5rem; line-height: 1.2; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
-        h4 { font-size: 1.25rem; }
-
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: var(--accent);
-        }
-
-        /* ===== Layout ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        section {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== Navigation ===== */
-        nav {
-            background-color: var(--bg-light);
-            border-bottom: 1px solid var(--border-warm);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            font-family: Georgia, serif;
-        }
-
-        .nav-logo .tagline {
-            font-size: 0.65rem;
-            color: var(--secondary);
-            display: block;
-            margin-top: -0.3rem;
-            font-family: system-ui, sans-serif;
-            font-weight: normal;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a.active {
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 0.25rem;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 0.4rem;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2.5px;
-            background-color: var(--text-dark);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg-light);
-                flex-direction: column;
-                gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s;
-                border-bottom: 1px solid var(--border-warm);
-            }
-
-            .nav-menu.active {
-                max-height: 400px;
-            }
-
-            .nav-menu li {
-                width: 100%;
-                padding: 1rem 1.5rem;
-                border-bottom: 1px solid var(--border-warm);
-            }
-
-            .nav-menu a {
-                display: block;
-            }
-
-            .nav-menu a.active {
-                border-bottom: none;
-                border-left: 3px solid var(--accent);
-                padding-left: 0.5rem;
-            }
-        }
-
-        /* ===== Hero Section ===== */
-        .hero {
-            background: linear-gradient(135deg, #8B9D6F 0%, #5B7F3B 50%, #4A6530 100%);
-            color: var(--text-light);
-            padding: 6rem 1.5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image:
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L30 10 L20 20 L10 10 Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            color: var(--text-light);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.875rem 2rem;
-            background-color: var(--accent);
-            color: var(--text-dark);
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: 2px solid var(--accent);
-            cursor: pointer;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: transparent;
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(212, 168, 83, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--accent);
-            color: var(--text-dark);
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1rem;
-            }
-        }
-
-        /* ===== Quick Access Bar ===== */
-        .quick-access {
-            padding: 3rem 1.5rem;
-            background-color: var(--card-bg);
-        }
-
-        .quick-access-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .quick-card {
-            background-color: var(--bg-light);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 8px var(--shadow);
-            transition: all 0.3s;
-            border: 1px solid var(--border-warm);
-        }
-
-        .quick-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 16px var(--shadow-dark);
-        }
-
-        .quick-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .quick-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .quick-card p {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-
-        /* ===== Section Titles ===== */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-top: 2rem;
-        }
-
-        .section-title h2 {
-            color: var(--primary);
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-
-        /* ===== News Section ===== */
-        .actualites-section {
-            padding: 4rem 1.5rem;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .news-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px var(--shadow);
-            transition: all 0.3s;
-            border: 1px solid var(--border-warm);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .news-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 20px var(--shadow-dark);
-        }
-
-        .news-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #D4A853 0%, #8B6F47 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: rgba(255,255,255,0.3);
-        }
-
-        .news-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .news-date {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .news-category {
-            display: inline-block;
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            width: fit-content;
-        }
-
-        .news-card h3 {
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
-        }
-
-        .news-excerpt {
-            color: var(--text-dark);
-            opacity: 0.8;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .news-link {
-            color: var(--primary);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s;
-        }
-
-        .news-link:hover {
-            gap: 0.8rem;
-        }
-
-        /* ===== Agenda Section ===== */
-        .agenda-section {
-            padding: 4rem 1.5rem;
-            background-color: var(--card-bg);
-        }
-
-        .agenda-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .event-card {
-            background-color: var(--bg-light);
-            border-radius: 8px;
-            padding: 2rem;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 2px 8px var(--shadow);
-            transition: all 0.3s;
-        }
-
-        .event-card:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px var(--shadow-dark);
-        }
-
-        .event-date-badge {
-            display: inline-block;
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .event-card h3 {
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
-        }
-
-        .event-location {
-            color: var(--secondary);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* ===== Infos Pratiques ===== */
-        .infos-pratiques {
-            padding: 4rem 1.5rem;
-        }
-
-        .infos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-box {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-warm);
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        .info-box h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .info-box p {
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
-        }
-
-        .info-box a {
-            display: block;
-            margin-top: 0.5rem;
-        }
-
-        /* ===== Pages Layout ===== */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .page-header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-warm);
-            padding: 2rem 1.5rem;
-        }
-
-        .breadcrumb {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            opacity: 0.7;
-        }
-
-        .breadcrumb a {
-            color: var(--primary);
-        }
-
-        .page-header h1 {
-            color: var(--primary);
-        }
-
-        .page-content {
-            padding: 3rem 1.5rem;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-        }
-
-        .main-content {
-            line-height: 1.8;
-        }
-
-        .main-content h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .main-content p {
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .sidebar-box {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-warm);
-        }
-
-        .sidebar-box h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .sidebar-box p {
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
-        }
-
-        @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* ===== Contact Form ===== */
-        .contact-form {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-warm);
-            max-width: 500px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-warm);
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(91, 127, 59, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .form-group button {
-            width: 100%;
-        }
-
-        /* ===== Map Placeholder ===== */
-        .map-placeholder {
-            background: linear-gradient(135deg, #E8E3DE 0%, #D4D0CB 100%);
-            height: 300px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            opacity: 0.6;
-            border: 1px solid var(--border-warm);
-        }
-
-        /* ===== Footer ===== */
-        footer {
-            background-color: var(--text-dark);
-            color: var(--text-light);
-            padding: 3rem 1.5rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section ul li a {
-            color: var(--text-light);
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            transition: all 0.3s;
-        }
-
-        .footer-social a:hover {
-            background-color: var(--accent);
-            color: var(--text-dark);
-            transform: translateY(-3px);
-        }
-
-        /* ===== Actualités Page Grid ===== */
-        .articles-full-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        /* ===== Scroll Animation ===== */
-        .section-animate {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .section-animate.in-view {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.8s ease-out;
-        }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 12px 32px -4px rgba(27, 28, 26, 0.06);
+        }
+        .page { display: none; }
+        .page.active { display: block; }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-logo">
-                Jettingen
-                <span class="tagline">Village du Sundgau</span>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
-                <li><a href="#commune" class="nav-link">La Commune</a></li>
-                <li><a href="#mairie" class="nav-link">Mairie & Démarches</a></li>
-                <li><a href="#vie" class="nav-link">Vie Quotidienne</a></li>
-                <li><a href="#actualites" class="nav-link">Actualités</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+<!-- ===== HEADER ===== -->
+<header class="bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-md top-0 sticky z-50 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+    <a href="#accueil" class="flex items-center gap-1 nav-link" data-page="accueil">
+        <span class="text-xl font-bold font-headline text-primary">Jettingen</span>
+        <span class="text-xs text-on-surface-variant hidden sm:inline ml-1">Village du Sundgau</span>
+    </a>
+    <nav class="hidden md:flex items-center space-x-8 font-headline tracking-tight font-semibold" id="desktopNav">
+        <a class="nav-link text-orange-700 border-b-2 border-orange-700 pb-1" href="#accueil" data-page="accueil">Accueil</a>
+        <a class="nav-link text-stone-600 font-medium hover:text-primary transition-colors duration-200" href="#commune" data-page="commune">Commune</a>
+        <a class="nav-link text-stone-600 font-medium hover:text-primary transition-colors duration-200" href="#mairie" data-page="mairie">Mairie</a>
+        <a class="nav-link text-stone-600 font-medium hover:text-primary transition-colors duration-200" href="#vie" data-page="vie">Vie Quotidienne</a>
+        <a class="nav-link text-stone-600 font-medium hover:text-primary transition-colors duration-200" href="#actualites" data-page="actualites">Actualites</a>
+        <a class="nav-link text-stone-600 font-medium hover:text-primary transition-colors duration-200" href="#contact" data-page="contact">Contact</a>
     </nav>
+    <div class="flex items-center gap-4">
+        <button class="material-symbols-outlined text-primary scale-95 transition-transform duration-150">search</button>
+        <button class="material-symbols-outlined text-primary scale-95 transition-transform duration-150 md:hidden" id="hamburgerBtn">menu</button>
+    </div>
+</div>
+<!-- Mobile menu -->
+<div class="hidden md:hidden bg-surface-container-lowest border-t border-outline-variant/30 px-8 py-4 space-y-4" id="mobileMenu">
+    <a class="nav-link block py-2 text-stone-600 font-medium hover:text-primary transition-colors" href="#accueil" data-page="accueil">Accueil</a>
+    <a class="nav-link block py-2 text-stone-600 font-medium hover:text-primary transition-colors" href="#commune" data-page="commune">Commune</a>
+    <a class="nav-link block py-2 text-stone-600 font-medium hover:text-primary transition-colors" href="#mairie" data-page="mairie">Mairie</a>
+    <a class="nav-link block py-2 text-stone-600 font-medium hover:text-primary transition-colors" href="#vie" data-page="vie">Vie Quotidienne</a>
+    <a class="nav-link block py-2 text-stone-600 font-medium hover:text-primary transition-colors" href="#actualites" data-page="actualites">Actualites</a>
+    <a class="nav-link block py-2 text-stone-600 font-medium hover:text-primary transition-colors" href="#contact" data-page="contact">Contact</a>
+</div>
+</header>
 
-    <!-- ACCUEIL Page -->
-    <div id="accueil" class="page active">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Bienvenue à Jettingen</h1>
-                <p class="subtitle">Commune du Sundgau — Haut-Rhin, Alsace</p>
-                <button class="btn" onclick="scrollToSection('actualites')">Découvrir notre village</button>
+<!-- ========================================
+     ACCUEIL PAGE
+     ======================================== -->
+<div id="accueil" class="page active">
+
+    <!-- Alert Banner -->
+    <aside class="max-w-7xl mx-auto px-8 mt-4">
+        <div class="bg-secondary-fixed text-on-secondary-fixed p-4 rounded-xl flex items-center justify-between editorial-shadow">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+                <p class="font-medium">Travaux rue de l'Ancienne-Ecole : Acces limite du 30 mars au 15 avril.</p>
             </div>
-        </section>
+            <button class="material-symbols-outlined hover:bg-black/5 rounded-full p-1 transition-colors" onclick="this.closest('aside').remove()">close</button>
+        </div>
+    </aside>
 
-        <!-- Quick Access Bar -->
-        <section class="quick-access">
-            <div class="container">
-                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Accès Rapide</h2>
-                <div class="quick-access-grid">
-                    <div class="quick-card">
-                        <div class="quick-card-icon">🏛️</div>
-                        <h3>Horaires Mairie</h3>
-                        <p>Lun-Ven: 9h-12h<br>Mar-Jeu: 14h-17h</p>
-                    </div>
-                    <div class="quick-card">
-                        <div class="quick-card-icon">🎉</div>
-                        <h3>Salle des Fêtes</h3>
-                        <p>Réservations et tarifs</p>
-                    </div>
-                    <div class="quick-card">
-                        <div class="quick-card-icon">📚</div>
-                        <h3>École Primaire</h3>
-                        <p>Inscriptions & informations</p>
-                    </div>
-                    <div class="quick-card">
-                        <div class="quick-card-icon">🚑</div>
-                        <h3>Urgences</h3>
-                        <p>SAMU: 15 | SOS Amis: 09</p>
-                    </div>
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-8 mt-6">
+        <div class="relative h-[450px] w-full rounded-3xl overflow-hidden flex items-end">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover" alt="Vue pittoresque du village alsacien de Jettingen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqxn2NTpoMN81WVLlqxEiRTy3GztWhFSrSrN_d1yggYKDWYCZh06gAPayJOLhI7PfKAQwXaKSy13CkSl7AI0OhZKRbRws2R1dEvJkUp5DAe0jSVF_vOi3oEJpcy2XOcJuc9XEhUmHg6s26tTgtDEpe8zisHNRNHl7X4kJF-MHUVxDfiR1Ecj78_y8y9sKDSBvOQ0ZSwePdkxKHdD_nPzlNSvU5ioWMywCQC75s5TQh8GSyI5esyvIcAJHJ340iGjz1WTQ7e04kuMk"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+            </div>
+            <div class="relative z-10 p-10 w-full text-on-primary">
+                <h1 class="font-headline text-4xl md:text-6xl font-bold tracking-tight mb-2 max-w-3xl leading-tight">
+                    Bienvenue a Jettingen
+                </h1>
+                <p class="text-on-primary/90 text-lg mb-4">Commune du Sundgau — Haut-Rhin, Alsace</p>
+                <a href="#actualites" class="nav-link bg-primary hover:bg-surface-tint text-on-primary px-8 py-3 rounded-md font-medium transition-all inline-flex items-center gap-2 editorial-shadow" data-page="actualites">
+                    Decouvrir notre village <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access -->
+    <section class="max-w-7xl mx-auto px-8 mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#mairie" data-page="mairie">
+                <div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-white">account_balance</span>
+                </div>
+                <div>
+                    <h3 class="font-headline text-lg font-semibold group-hover:text-white">Horaires Mairie</h3>
+                    <p class="text-on-surface-variant group-hover:text-white/80 text-xs">Lun-Ven: 9h-12h / Mar-Jeu: 14h-17h</p>
+                </div>
+            </a>
+            <a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#vie" data-page="vie">
+                <div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-white">event_seat</span>
+                </div>
+                <div>
+                    <h3 class="font-headline text-lg font-semibold group-hover:text-white">Salle des Fetes</h3>
+                    <p class="text-on-surface-variant group-hover:text-white/80 text-xs">Reservations et tarifs</p>
+                </div>
+            </a>
+            <a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="#vie" data-page="vie">
+                <div class="bg-primary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-white">school</span>
+                </div>
+                <div>
+                    <h3 class="font-headline text-lg font-semibold group-hover:text-white">Ecole Primaire</h3>
+                    <p class="text-on-surface-variant group-hover:text-white/80 text-xs">Inscriptions & informations</p>
+                </div>
+            </a>
+            <a class="group bg-surface-container-lowest p-6 rounded-xl editorial-shadow hover:bg-primary transition-colors duration-300 flex items-center gap-4" href="tel:15">
+                <div class="bg-secondary-fixed w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center group-hover:bg-primary-container transition-colors">
+                    <span class="material-symbols-outlined text-secondary group-hover:text-white">emergency</span>
+                </div>
+                <div>
+                    <h3 class="font-headline text-lg font-semibold group-hover:text-white">Urgences</h3>
+                    <p class="text-on-surface-variant group-hover:text-white/80 text-xs">SAMU: 15 | Pompiers: 18</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- La Commune Tab Bar -->
+    <section class="max-w-7xl mx-auto px-8 mt-8">
+        <div class="bg-stone-100/50 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
+            <div class="flex-shrink-0">
+                <h2 class="text-primary font-bold text-lg">La Commune</h2>
+                <p class="text-on-surface-variant text-sm">Decouvrir Jettingen</p>
+            </div>
+            <div class="flex-1 flex flex-wrap gap-4">
+                <a class="nav-link bg-white text-primary font-bold shadow-sm px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 transition-all text-sm" href="#commune" data-page="commune">
+                    <span class="material-symbols-outlined text-xl">history_edu</span> Histoire
+                </a>
+                <a class="nav-link text-stone-500 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 transition-all text-sm" href="#commune" data-page="commune">
+                    <span class="material-symbols-outlined text-xl">group</span> Elus
+                </a>
+                <a class="nav-link text-stone-500 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 transition-all text-sm" href="#commune" data-page="commune">
+                    <span class="material-symbols-outlined text-xl">landscape</span> Patrimoine
+                </a>
+                <a class="nav-link text-stone-500 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-stone-200 transition-all text-sm" href="#mairie" data-page="mairie">
+                    <span class="material-symbols-outlined text-xl">settings</span> Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News + Sidebar -->
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- News Column -->
+            <div class="lg:col-span-2 space-y-12">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="font-headline text-3xl font-semibold">Dernieres Actualites</h2>
+                    <a class="nav-link text-secondary font-medium hover:underline" href="#actualites" data-page="actualites">Voir tout</a>
+                </div>
+                <div class="space-y-10">
+                    <article class="flex flex-col md:flex-row gap-8 group">
+                        <div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl flex-shrink-0">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Travaux de voirie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdNcGb0XuBPsDHCTqGanMjkQzqYrtp4HSrkv1hxqpnkaj-jDh5GcY3B0XqFTzinrwb1MqZ_mGncvHOpiIi2Bj5ig0vgddgkWVhdTsz2cdGX_b0CcyDk11nKKlTc6tK_0lk1Q1tDLyZL119Z12qNb0p7WLEclUdXwLaJc7eK7G-MaoyDuYKRdvomOHwEG0yEsIAR9t1U6K84jtqvB-1nriG7LiW9H-MFqckUGT3gYSC6fy4xufEdfuO-VjRZY5WqcTaLOg6mBO-DdLp"/>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-secondary font-medium mb-1 text-sm">28 MARS 2026</span>
+                            <h3 class="font-headline text-2xl font-semibold mb-3 leading-snug">Travaux rue de l'Ancienne-Ecole</h3>
+                            <p class="text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">
+                                Des travaux de voirie sont en cours sur la rue de l'Ancienne-Ecole. Acces limite du 30 mars au 15 avril...
+                            </p>
+                            <a href="#actualites" class="nav-link text-primary font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform" data-page="actualites">
+                                Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="flex flex-col md:flex-row gap-8 group">
+                        <div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl flex-shrink-0">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Inscriptions scolaires" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4QomZ3MbdEti0N8l9y3eWj5fywhRvLOS8YXWN22IgKRgmxsAl1Y6pUyInikypVSmwNWgpeZBI3Sjfmx6ykHgCR36dbJM-ZXpsJZI_9JxdYsz2-sBPfwdTF9KJbOi0FI1YNyzHXXpyg9wl1hVsCsB87cPj1tYqU7bl9LX99q6kF5tdtN8Nh7Pl5kRuAVQ5nK5KRfgNk5-85ucU0nq3N7OTcqJ8CcsQuxPo_rauISxZ9pER1bI2V8JKOiZI75PsHlSFLNrtuGasAai5"/>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-secondary font-medium mb-1 text-sm">20 MARS 2026</span>
+                            <h3 class="font-headline text-2xl font-semibold mb-3 leading-snug">Inscriptions Ecole — Rentree 2026</h3>
+                            <p class="text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">
+                                Les inscriptions pour la rentree scolaire 2026 sont ouvertes. Veuillez contacter la mairie pour plus d'informations...
+                            </p>
+                            <a href="#actualites" class="nav-link text-primary font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform" data-page="actualites">
+                                Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="flex flex-col md:flex-row gap-8 group">
+                        <div class="md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl flex-shrink-0">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Marche de Noel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZDFV342aUlLGLRE7aNSJ1LHGdqvVp83NdPdkRZNqol26VowKlRQwAWIMLxa_QJG5SsRfvlcvBN2ZnifgqnZcsF1oQ_Mcb5rxvRW1rh7TSux1fHDqrJQiFQ5NdIOvz-EqO5vDmVt8q6t_EghnTgQRYaM6AEYPYsNPpebpYq88CKDD19Y90S0Zch2oCzpPAs1fjnF9VFm7kU0M5Pw8YsMpueUjC4ypUSEsUPZ56vENPveWoEEm8R0-esZwdFcEM85lPELv8Jg8D57nS"/>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-secondary font-medium mb-1 text-sm">15 MARS 2026</span>
+                            <h3 class="font-headline text-2xl font-semibold mb-3 leading-snug">Marche de Noel — Save the Date</h3>
+                            <p class="text-on-surface-variant mb-4 line-clamp-2 leading-relaxed">
+                                Premiere annonce : le traditionnel Marche de Noel de Jettingen aura lieu en decembre 2026. Programme a venir...
+                            </p>
+                            <a href="#actualites" class="nav-link text-primary font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform" data-page="actualites">
+                                Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </section>
 
-        <!-- Actualités Section -->
-        <section class="actualites-section section-animate">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Actualités</h2>
-                </div>
-                <div class="news-grid">
-                    <div class="news-card">
-                        <div class="news-image">📰</div>
-                        <div class="news-content">
-                            <span class="news-date">28 mars 2026</span>
-                            <span class="news-category">Travaux</span>
-                            <h3>Travaux rue de l'Ancienne-École</h3>
-                            <p class="news-excerpt">Des travaux de voirie sont en cours sur la rue de l'Ancienne-École. Accès limité du 30 mars au 15 avril. Merci de votre compréhension.</p>
-                            <a href="#actualites" class="news-link">Lire la suite →</a>
+            <!-- Sidebar -->
+            <div class="space-y-8">
+                <!-- Agenda -->
+                <div class="bg-surface-container-high rounded-xl p-8">
+                    <h2 class="font-headline text-2xl font-semibold mb-8 border-b border-outline-variant/30 pb-4">Agenda du Village</h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="bg-secondary-fixed text-on-secondary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">AVR</span>
+                                <span class="text-base">15</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base leading-tight group-hover:text-secondary transition-colors">Conseil municipal</h4>
+                                <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                                    <span class="material-symbols-outlined text-[14px]">location_on</span> Salle des fetes
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="bg-primary-fixed text-on-primary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">AVR</span>
+                                <span class="text-base">25</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base leading-tight group-hover:text-secondary transition-colors">Nettoyage de printemps</h4>
+                                <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                                    <span class="material-symbols-outlined text-[14px]">location_on</span> Sentiers communaux
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="bg-tertiary-fixed text-on-tertiary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">JUN</span>
+                                <span class="text-base">21</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base leading-tight group-hover:text-secondary transition-colors">Fete de la musique</h4>
+                                <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                                    <span class="material-symbols-outlined text-[14px]">location_on</span> Place centrale
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="news-card">
-                        <div class="news-image">📚</div>
-                        <div class="news-content">
-                            <span class="news-date">20 mars 2026</span>
-                            <span class="news-category">Éducation</span>
-                            <h3>Inscriptions École — Rentrée 2026</h3>
-                            <p class="news-excerpt">Les inscriptions pour la rentrée scolaire 2026 sont ouvertes. Veuillez contacter la mairie pour plus d'informations.</p>
-                            <a href="#actualites" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-image">🎄</div>
-                        <div class="news-content">
-                            <span class="news-date">15 mars 2026</span>
-                            <span class="news-category">Événement</span>
-                            <h3>Marché de Noël — Save the Date</h3>
-                            <p class="news-excerpt">Première annonce : le traditionnel Marché de Noël de Jettingen aura lieu en décembre 2026. Programme à venir.</p>
-                            <a href="#actualites" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
+                    <button class="w-full mt-8 py-3 border-2 border-primary text-primary font-bold rounded-md hover:bg-primary hover:text-white transition-all text-sm">
+                        Voir tout l'agenda
+                    </button>
                 </div>
-            </div>
-        </section>
 
-        <!-- Agenda Section -->
-        <section class="agenda-section section-animate">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Agenda</h2>
-                </div>
-                <div class="agenda-grid">
-                    <div class="event-card">
-                        <div class="event-date-badge">15 avril 2026</div>
-                        <h3>Conseil municipal</h3>
-                        <p class="event-location">📍 Salle des fêtes</p>
+                <!-- Infos Pratiques -->
+                <div class="bg-tertiary p-8 rounded-xl text-on-tertiary space-y-4 editorial-shadow">
+                    <h3 class="font-headline text-xl font-bold">Informations Pratiques</h3>
+                    <div class="text-on-tertiary-container text-sm leading-relaxed space-y-2">
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-base">location_on</span> 58 rue de la Fontaine, 68130 Jettingen</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-base">call</span> 03 89 40 60 20</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-base">mail</span> mairie@jettingen.fr</p>
                     </div>
-                    <div class="event-card">
-                        <div class="event-date-badge">25 avril 2026</div>
-                        <h3>Nettoyage de printemps</h3>
-                        <p class="event-location">📍 Sentiers communaux</p>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-date-badge">21 juin 2026</div>
-                        <h3>Fête de la musique</h3>
-                        <p class="event-location">📍 Place centrale</p>
-                    </div>
+                    <a class="nav-link inline-flex items-center gap-2 font-bold text-sm bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-all w-full justify-center" href="#contact" data-page="contact">
+                        <span class="material-symbols-outlined">send</span> Nous contacter
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </main>
+</div>
 
-        <!-- Infos Pratiques Section -->
-        <section class="infos-pratiques section-animate">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Informations Pratiques</h2>
-                </div>
-                <div class="infos-grid">
-                    <div class="info-box">
-                        <h3>📍 Adresse</h3>
-                        <p>Mairie de Jettingen<br>58 rue de la Fontaine<br>68130 Jettingen</p>
-                    </div>
-                    <div class="info-box">
-                        <h3>📞 Contact</h3>
-                        <p>Tél: <a href="tel:+33389406020">+33 (0)3 89 40 60 20</a></p>
-                        <p>Email: <a href="mailto:mairie@jettingen.fr">mairie@jettingen.fr</a></p>
-                    </div>
-                    <div class="info-box">
-                        <h3>🕐 Horaires</h3>
-                        <p>Lundi-Vendredi: 9h-12h<br>Mardi-Jeudi: 14h-17h<br>Fermé: Mercredi après-midi</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ========================================
+     COMMUNE PAGE
+     ======================================== -->
+<div id="commune" class="page">
+    <!-- Breadcrumb -->
+    <div class="max-w-7xl mx-auto px-8 mt-6">
+        <nav class="text-sm text-on-surface-variant flex items-center gap-2">
+            <a href="#accueil" class="nav-link hover:text-primary transition-colors" data-page="accueil">Accueil</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-on-surface font-medium">La Commune</span>
+        </nav>
     </div>
 
-    <!-- LA COMMUNE Page -->
-    <div id="commune" class="page">
-        <div class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="#accueil">Accueil</a> / La Commune
-                </div>
-                <h1>La Commune de Jettingen</h1>
+    <!-- Page Header -->
+    <section class="max-w-7xl mx-auto px-8 mt-4">
+        <div class="relative h-[250px] w-full rounded-3xl overflow-hidden flex items-end">
+            <div class="absolute inset-0 z-0 bg-gradient-to-r from-primary to-primary-container"></div>
+            <div class="relative z-10 p-10 w-full text-on-primary">
+                <h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight">La Commune de Jettingen</h1>
             </div>
         </div>
-        <div class="page-content">
-            <div class="container">
-                <div class="content-grid">
-                    <div class="main-content">
-                        <h2>Historique</h2>
-                        <p>Jettingen est une petite commune du Sundgau, région emblématique de la Basse-Alsace. Avec ses quelque 500 habitants, elle incarne le charme authentique des villages alsaciens, où tradition et tranquillité se rencontrent.</p>
+    </section>
 
-                        <p>Les origines de Jettingen remontent à la Préhistoire, avec des traces d'occupation humaine datant du Néolithique. Le territoire actuel s'est développé progressivement au cours du Moyen Âge, sous l'influence des seigneurs locaux et des monastères du Sundgau.</p>
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2 space-y-8">
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Historique</h2>
+                    <p class="text-on-surface-variant leading-relaxed mb-4">Jettingen est une petite commune du Sundgau, region emblematique de la Basse-Alsace. Avec ses quelque 500 habitants, elle incarne le charme authentique des villages alsaciens, ou tradition et tranquillite se rencontrent.</p>
+                    <p class="text-on-surface-variant leading-relaxed mb-4">Les origines de Jettingen remontent a la Prehistoire, avec des traces d'occupation humaine datant du Neolithique. Le territoire actuel s'est developpe progressivement au cours du Moyen Age, sous l'influence des seigneurs locaux et des monasteres du Sundgau.</p>
+                    <p class="text-on-surface-variant leading-relaxed">Le nom de Jettingen, d'origine germanique, evoque les puits et les sources qui caracterisaient le territoire, ressources essentielles pour les communautes medievales.</p>
+                </div>
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Le Sundgau</h2>
+                    <p class="text-on-surface-variant leading-relaxed mb-4">Jettingen appartient a la communaute de communes du Sundgau, une intercommunalite dynamique regroupant plusieurs villages alsaciens. Le Sundgau, litteralement « pays du sud », est une region agricole riche, connue pour ses paysages verdoyants, ses vignobles, et son patrimoine culturel.</p>
+                    <p class="text-on-surface-variant leading-relaxed">La region beneficie d'une position strategique entre Mulhouse et Belfort, offrant un acces facile aux grands centres urbains tout en preservant son caractere rural et champetre.</p>
+                </div>
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Vie Locale</h2>
+                    <p class="text-on-surface-variant leading-relaxed mb-4">Malgre sa petite taille, Jettingen dispose d'equipements essentiels : une ecole primaire, une salle des fetes, et une mairie qui gere les affaires communales avec devouement.</p>
+                    <p class="text-on-surface-variant leading-relaxed">L'agriculture reste une activite importante, avec des exploitations agricoles familiales et des vignes qui contribuent a l'identite regionale. La foret, omnipresente, offre des ressources et des lieux de detente aux habitants.</p>
+                </div>
+            </div>
 
-                        <p>Le nom de Jettingen, d'origine germanique, évoque les puits et les sources qui caractérisaient le territoire, ressources essentielles pour les communautés médiévales. Cette richesse hydrologique a favorisé l'établissement des premiers habitants.</p>
-
-                        <h2>Le Sundgau</h2>
-                        <p>Jettingen appartient à la communauté de communes du Sundgau, une intercommunalité dynamique regroupant plusieurs villages alsaciens. Le Sundgau, littéralement « pays du sud », est une région agricole riche, connue pour ses paysages verdoyants, ses vignobles, et son patrimoine culturel.</p>
-
-                        <p>La région bénéficie d'une position stratégique entre Mulhouse et Belfort, offrant un accès facile aux grand centres urbains tout en préservant son caractère rural et champêtre.</p>
-
-                        <h2>Vie Locale</h2>
-                        <p>Malgré sa petite taille, Jettingen dispose d'équipements essentiels : une école primaire, une salle des fêtes, et une mairie qui gère les affaires communales avec dévouement. La communauté est active, avec plusieurs associations locales qui organisent événements culturels et manifestations sociales tout au long de l'année.</p>
-
-                        <p>L'agriculture reste une activité importante, avec des exploitations agricoles familiales et des vignes qui contribuent à l'identité régionale. La forêt, omniprésente, offre des ressources et des lieux de détente aux habitants.</p>
+            <aside class="space-y-6">
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Chiffres Cles</h3>
+                    <div class="space-y-3 text-sm">
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Population</span><span class="font-semibold">~500 hab.</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Departement</span><span class="font-semibold">Haut-Rhin (68)</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Region</span><span class="font-semibold">Grand Est</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Intercommunalite</span><span class="font-semibold">CC Sundgau</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Altitude</span><span class="font-semibold">330 m</span></p>
                     </div>
-                    <aside class="sidebar">
-                        <div class="sidebar-box">
-                            <h3>Chiffres Clés</h3>
-                            <p><strong>Population:</strong> ~500 habitants</p>
-                            <p><strong>Département:</strong> Haut-Rhin (68)</p>
-                            <p><strong>Région:</strong> Grand Est, Alsace</p>
-                            <p><strong>Intercommunalité:</strong> CC Sundgau</p>
-                            <p><strong>Altitude:</strong> 330 m</p>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3>Accès</h3>
-                            <p><strong>Mulhouse:</strong> 20 km</p>
-                            <p><strong>Belfort:</strong> 30 km</p>
-                            <p><strong>Colmar:</strong> 50 km</p>
-                            <p><strong>Strasbourg:</strong> 80 km</p>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3>Contacts Utiles</h3>
-                            <p><a href="tel:+33389406020">Mairie: 03 89 40 60 20</a></p>
-                            <p><a href="mailto:mairie@jettingen.fr">mairie@jettingen.fr</a></p>
-                            <p><a href="#contact">Formulaire de contact</a></p>
-                        </div>
-                    </aside>
                 </div>
-            </div>
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Acces</h3>
+                    <div class="space-y-3 text-sm">
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Mulhouse</span><span class="font-semibold">20 km</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Belfort</span><span class="font-semibold">30 km</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Colmar</span><span class="font-semibold">50 km</span></p>
+                        <p class="flex justify-between"><span class="text-on-surface-variant">Strasbourg</span><span class="font-semibold">80 km</span></p>
+                    </div>
+                </div>
+                <div class="bg-tertiary p-6 rounded-xl text-on-tertiary editorial-shadow">
+                    <h3 class="font-headline text-lg font-bold mb-3">Contacts Utiles</h3>
+                    <div class="text-on-tertiary-container text-sm space-y-2">
+                        <p><a href="tel:+33389406020" class="hover:underline">Mairie: 03 89 40 60 20</a></p>
+                        <p><a href="mailto:mairie@jettingen.fr" class="hover:underline">mairie@jettingen.fr</a></p>
+                    </div>
+                </div>
+            </aside>
         </div>
+    </main>
+</div>
+
+<!-- ========================================
+     MAIRIE PAGE
+     ======================================== -->
+<div id="mairie" class="page">
+    <div class="max-w-7xl mx-auto px-8 mt-6">
+        <nav class="text-sm text-on-surface-variant flex items-center gap-2">
+            <a href="#accueil" class="nav-link hover:text-primary transition-colors" data-page="accueil">Accueil</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-on-surface font-medium">Mairie & Demarches</span>
+        </nav>
     </div>
 
-    <!-- MAIRIE & DÉMARCHES Page -->
-    <div id="mairie" class="page">
-        <div class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="#accueil">Accueil</a> / Mairie & Démarches
-                </div>
-                <h1>Mairie & Démarches Administratives</h1>
+    <section class="max-w-7xl mx-auto px-8 mt-4">
+        <div class="relative h-[250px] w-full rounded-3xl overflow-hidden flex items-end">
+            <div class="absolute inset-0 z-0 bg-gradient-to-r from-primary-container to-surface-tint"></div>
+            <div class="relative z-10 p-10 w-full text-on-primary">
+                <h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight">Mairie & Demarches</h1>
             </div>
         </div>
-        <div class="page-content">
-            <div class="container">
-                <div class="content-grid">
-                    <div class="main-content">
-                        <h2>Services de la Mairie</h2>
-                        <p>La mairie de Jettingen est votre interlocuteur privilégié pour toutes vos démarches administratives. Nos agents municipaux sont à votre écoute pour vous accompagner dans vos démarches et répondre à vos questions.</p>
+    </section>
 
-                        <h2>Horaires d'Ouverture</h2>
-                        <ul style="margin-bottom: 2rem;">
-                            <li><strong>Lundi:</strong> 9h-12h</li>
-                            <li><strong>Mardi:</strong> 9h-12h et 14h-17h</li>
-                            <li><strong>Mercredi:</strong> 9h-12h</li>
-                            <li><strong>Jeudi:</strong> 9h-12h et 14h-17h</li>
-                            <li><strong>Vendredi:</strong> 9h-12h</li>
-                            <li><strong>Samedi & Dimanche:</strong> Fermé</li>
-                        </ul>
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2 space-y-8">
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Services de la Mairie</h2>
+                    <p class="text-on-surface-variant leading-relaxed">La mairie de Jettingen est votre interlocuteur privilegie pour toutes vos demarches administratives. Nos agents municipaux sont a votre ecoute pour vous accompagner dans vos demarches et repondre a vos questions.</p>
+                </div>
 
-                        <h2>Démarches Courantes</h2>
-                        <p>Parmi les services offerts par la mairie :</p>
-                        <ul style="margin-bottom: 2rem;">
-                            <li>État civil (naissances, mariages, décès)</li>
-                            <li>Documents d'identité</li>
-                            <li>Cartes d'électeur</li>
-                            <li>Permis de construire et autorisations</li>
-                            <li>Inscriptions scolaires</li>
-                            <li>Aides sociales et allocations</li>
-                            <li>Logement social</li>
-                        </ul>
-
-                        <h2>Conseil Municipal</h2>
-                        <p>Le conseil municipal se réunit régulièrement pour gérer les affaires communales et prendre les décisions concernant la développement de Jettingen. Les séances sont publiques et les habitants sont invités à y assister.</p>
-
-                        <p>Pour connaître l'ordre du jour et les dates des prochaines séances, veuillez contacter la mairie.</p>
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Horaires d'Ouverture</h2>
+                    <div class="bg-surface-container-lowest rounded-xl p-6 editorial-shadow">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                            <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="font-medium">Lundi</span><span class="text-on-surface-variant">9h-12h</span></div>
+                            <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="font-medium">Mardi</span><span class="text-on-surface-variant">9h-12h et 14h-17h</span></div>
+                            <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="font-medium">Mercredi</span><span class="text-on-surface-variant">9h-12h</span></div>
+                            <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="font-medium">Jeudi</span><span class="text-on-surface-variant">9h-12h et 14h-17h</span></div>
+                            <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="font-medium">Vendredi</span><span class="text-on-surface-variant">9h-12h</span></div>
+                            <div class="flex justify-between py-2 border-b border-outline-variant/20"><span class="font-medium">Week-end</span><span class="text-on-surface-variant">Ferme</span></div>
+                        </div>
                     </div>
-                    <aside class="sidebar">
-                        <div class="sidebar-box">
-                            <h3>Contact Direct</h3>
-                            <p><strong>Adresse:</strong><br>58 rue de la Fontaine<br>68130 Jettingen</p>
-                            <p><strong>Téléphone:</strong><br><a href="tel:+33389406020">03 89 40 60 20</a></p>
-                            <p><strong>Email:</strong><br><a href="mailto:mairie@jettingen.fr">mairie@jettingen.fr</a></p>
+                </div>
+
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Demarches Courantes</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-primary">description</span>
+                            <span class="text-sm font-medium">Etat civil (naissances, mariages, deces)</span>
                         </div>
-                        <div class="sidebar-box">
-                            <h3>Maire</h3>
-                            <p>Jean-Paul Gérard</p>
-                            <p>Élu depuis 2014</p>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-primary">badge</span>
+                            <span class="text-sm font-medium">Documents d'identite</span>
                         </div>
-                        <div class="sidebar-box">
-                            <h3>Ressources Utiles</h3>
-                            <p><a href="#contact">Nous contacter</a></p>
-                            <p><a href="#actualites">Actualités mairie</a></p>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-primary">how_to_vote</span>
+                            <span class="text-sm font-medium">Cartes d'electeur</span>
                         </div>
-                    </aside>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-primary">architecture</span>
+                            <span class="text-sm font-medium">Permis de construire</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-primary">school</span>
+                            <span class="text-sm font-medium">Inscriptions scolaires</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-primary">volunteer_activism</span>
+                            <span class="text-sm font-medium">Aides sociales</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Conseil Municipal</h2>
+                    <p class="text-on-surface-variant leading-relaxed">Le conseil municipal se reunit regulierement pour gerer les affaires communales. Les seances sont publiques et les habitants sont invites a y assister. Pour connaitre l'ordre du jour et les dates des prochaines seances, veuillez contacter la mairie.</p>
                 </div>
             </div>
+
+            <aside class="space-y-6">
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Contact Direct</h3>
+                    <div class="space-y-3 text-sm text-on-surface-variant">
+                        <p class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-base">location_on</span> 58 rue de la Fontaine<br/>68130 Jettingen</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">call</span> <a href="tel:+33389406020" class="hover:text-primary transition-colors">03 89 40 60 20</a></p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">mail</span> <a href="mailto:mairie@jettingen.fr" class="hover:text-primary transition-colors">mairie@jettingen.fr</a></p>
+                    </div>
+                </div>
+                <div class="bg-primary-fixed rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-3 text-on-primary-fixed">Maire</h3>
+                    <p class="text-on-primary-fixed-variant text-sm">Jean-Paul Gerard</p>
+                    <p class="text-on-primary-fixed-variant text-sm">Elu depuis 2014</p>
+                </div>
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Ressources Utiles</h3>
+                    <div class="space-y-2 text-sm">
+                        <a href="#contact" class="nav-link text-primary hover:underline flex items-center gap-2" data-page="contact"><span class="material-symbols-outlined text-base">send</span> Nous contacter</a>
+                        <a href="#actualites" class="nav-link text-primary hover:underline flex items-center gap-2" data-page="actualites"><span class="material-symbols-outlined text-base">newspaper</span> Actualites mairie</a>
+                    </div>
+                </div>
+            </aside>
         </div>
+    </main>
+</div>
+
+<!-- ========================================
+     VIE QUOTIDIENNE PAGE
+     ======================================== -->
+<div id="vie" class="page">
+    <div class="max-w-7xl mx-auto px-8 mt-6">
+        <nav class="text-sm text-on-surface-variant flex items-center gap-2">
+            <a href="#accueil" class="nav-link hover:text-primary transition-colors" data-page="accueil">Accueil</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-on-surface font-medium">Vie Quotidienne</span>
+        </nav>
     </div>
 
-    <!-- VIE QUOTIDIENNE Page -->
-    <div id="vie" class="page">
-        <div class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="#accueil">Accueil</a> / Vie Quotidienne
-                </div>
-                <h1>Vie Quotidienne à Jettingen</h1>
+    <section class="max-w-7xl mx-auto px-8 mt-4">
+        <div class="relative h-[250px] w-full rounded-3xl overflow-hidden flex items-end">
+            <div class="absolute inset-0 z-0 bg-gradient-to-r from-tertiary to-tertiary-container"></div>
+            <div class="relative z-10 p-10 w-full text-on-tertiary">
+                <h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tight">Vie Quotidienne</h1>
             </div>
         </div>
-        <div class="page-content">
-            <div class="container">
-                <div class="content-grid">
-                    <div class="main-content">
-                        <h2>École Primaire</h2>
-                        <p>L'école primaire de Jettingen accueille les enfants de la commune et des villages alentours. L'établissement offre un environnement bienveillant et propice à l'apprentissage, avec des équipes pédagogiques engagées.</p>
+    </section>
 
-                        <p><strong>Directrice:</strong> Marie-Christine Blum<br>
-                        <strong>Téléphone:</strong> 03 89 40 64 15</p>
-
-                        <h2>Équipements Municipaux</h2>
-                        <p>La commune dispose de plusieurs équipements pour la vie de ses habitants :</p>
-                        <ul style="margin-bottom: 2rem;">
-                            <li><strong>Salle des Fêtes:</strong> Disponible pour mariages, fêtes et manifestations communales</li>
-                            <li><strong>Terrain de Sport:</strong> Football et activités extérieures</li>
-                            <li><strong>Aire de Jeux:</strong> Pour les enfants du village</li>
-                            <li><strong>Bibliothèque Municipale:</strong> Petit fonds documentaire et accès à la lecture</li>
-                        </ul>
-
-                        <h2>Associations</h2>
-                        <p>La vie associative est dynamique à Jettingen. Plusieurs associations animent la commune tout au long de l'année :</p>
-                        <ul style="margin-bottom: 2rem;">
-                            <li>Association des Fêtes et Manifestations</li>
-                            <li>Société de Tir (ACJT)</li>
-                            <li>Club de Football Jettingois</li>
-                            <li>Amis de la Nature</li>
-                            <li>Groupement Agricole d'Exploitation en Commun (GAEC)</li>
-                        </ul>
-
-                        <h2>Événements Annuels</h2>
-                        <p>Jettingen propose plusieurs événements tout au long de l'année qui rythment la vie du village :</p>
-                        <ul style="margin-bottom: 2rem;">
-                            <li>Fête de la Moisson (septembre)</li>
-                            <li>Marché de Noël (décembre)</li>
-                            <li>Fête de la Musique (21 juin)</li>
-                            <li>Réveillon de l'An</li>
-                            <li>Festivals folkloriques régionaux</li>
-                        </ul>
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2 space-y-8">
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Ecole Primaire</h2>
+                    <p class="text-on-surface-variant leading-relaxed mb-4">L'ecole primaire de Jettingen accueille les enfants de la commune et des villages alentours. L'etablissement offre un environnement bienveillant et propice a l'apprentissage, avec des equipes pedagogiques engagees.</p>
+                    <div class="bg-surface-container-lowest rounded-xl p-4 editorial-shadow text-sm space-y-1">
+                        <p><strong>Directrice :</strong> Marie-Christine Blum</p>
+                        <p><strong>Telephone :</strong> <a href="tel:+33389406415" class="text-primary hover:underline">03 89 40 64 15</a></p>
                     </div>
-                    <aside class="sidebar">
-                        <div class="sidebar-box">
-                            <h3>École Primaire</h3>
-                            <p><strong>Directrice:</strong><br>Marie-Christine Blum</p>
-                            <p><strong>Tél:</strong><br><a href="tel:+33389406415">03 89 40 64 15</a></p>
-                            <p><strong>Inscriptions:</strong><br>Voir Mairie</p>
+                </div>
+
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Equipements Municipaux</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-surface-container-lowest p-5 rounded-xl editorial-shadow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-primary">event_seat</span>
+                                <h4 class="font-semibold">Salle des Fetes</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Disponible pour mariages, fetes et manifestations communales</p>
                         </div>
-                        <div class="sidebar-box">
-                            <h3>Salle des Fêtes</h3>
-                            <p>Réservations à la mairie</p>
-                            <p><strong>Capacité:</strong> 150 personnes</p>
-                            <p><strong>Cuisines équipées</strong></p>
+                        <div class="bg-surface-container-lowest p-5 rounded-xl editorial-shadow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-primary">sports_soccer</span>
+                                <h4 class="font-semibold">Terrain de Sport</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Football et activites exterieures</p>
                         </div>
-                        <div class="sidebar-box">
-                            <h3>Médecin</h3>
-                            <p><strong>Dr. Laurent Fischer</strong><br>Jettingen</p>
-                            <p><strong>Cabinet:</strong> Rue Principale<br><a href="tel:+33389406030">03 89 40 60 30</a></p>
+                        <div class="bg-surface-container-lowest p-5 rounded-xl editorial-shadow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-primary">toys</span>
+                                <h4 class="font-semibold">Aire de Jeux</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Pour les enfants du village</p>
                         </div>
-                    </aside>
+                        <div class="bg-surface-container-lowest p-5 rounded-xl editorial-shadow">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-primary">local_library</span>
+                                <h4 class="font-semibold">Bibliotheque</h4>
+                            </div>
+                            <p class="text-on-surface-variant text-sm">Fonds documentaire et acces a la lecture</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Associations</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-secondary">celebration</span>
+                            <span class="text-sm font-medium">Association des Fetes et Manifestations</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-secondary">sports</span>
+                            <span class="text-sm font-medium">Societe de Tir (ACJT)</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-secondary">sports_soccer</span>
+                            <span class="text-sm font-medium">Club de Football Jettingois</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <span class="material-symbols-outlined text-secondary">park</span>
+                            <span class="text-sm font-medium">Amis de la Nature</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-headline text-2xl font-semibold mb-4 text-primary">Evenements Annuels</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex gap-4 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <div class="bg-secondary-fixed text-on-secondary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">SEP</span>
+                                <span class="material-symbols-outlined text-base">agriculture</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Fete de la Moisson</h4>
+                                <p class="text-xs text-on-surface-variant">Septembre</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <div class="bg-primary-fixed text-on-primary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">DEC</span>
+                                <span class="material-symbols-outlined text-base">holiday_village</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Marche de Noel</h4>
+                                <p class="text-xs text-on-surface-variant">Decembre</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <div class="bg-tertiary-fixed text-on-tertiary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">JUN</span>
+                                <span class="material-symbols-outlined text-base">music_note</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Fete de la Musique</h4>
+                                <p class="text-xs text-on-surface-variant">21 Juin</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 bg-surface-container-lowest p-4 rounded-xl editorial-shadow">
+                            <div class="bg-secondary-fixed text-on-secondary-fixed w-12 h-12 flex-shrink-0 flex flex-col items-center justify-center rounded-lg font-bold">
+                                <span class="text-[10px] uppercase">DEC</span>
+                                <span class="material-symbols-outlined text-base">nightlife</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm">Reveillon de l'An</h4>
+                                <p class="text-xs text-on-surface-variant">31 Decembre</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <aside class="space-y-6">
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Ecole Primaire</h3>
+                    <div class="space-y-2 text-sm text-on-surface-variant">
+                        <p><strong>Directrice :</strong> Marie-Christine Blum</p>
+                        <p><strong>Tel :</strong> <a href="tel:+33389406415" class="text-primary hover:underline">03 89 40 64 15</a></p>
+                        <p><strong>Inscriptions :</strong> Voir Mairie</p>
+                    </div>
+                </div>
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Salle des Fetes</h3>
+                    <div class="space-y-2 text-sm text-on-surface-variant">
+                        <p>Reservations a la mairie</p>
+                        <p><strong>Capacite :</strong> 150 personnes</p>
+                        <p><strong>Cuisines equipees</strong></p>
+                    </div>
+                </div>
+                <div class="bg-primary-fixed rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-3 text-on-primary-fixed">Medecin</h3>
+                    <div class="text-on-primary-fixed-variant text-sm space-y-1">
+                        <p><strong>Dr. Laurent Fischer</strong></p>
+                        <p>Cabinet : Rue Principale</p>
+                        <p><a href="tel:+33389406030" class="hover:underline">03 89 40 60 30</a></p>
+                    </div>
+                </div>
+            </aside>
         </div>
+    </main>
+</div>
+
+<!-- ========================================
+     ACTUALITES PAGE
+     ======================================== -->
+<div id="actualites" class="page">
+    <div class="max-w-7xl mx-auto px-8 mt-6">
+        <nav class="text-sm text-on-surface-variant flex items-center gap-2">
+            <a href="#accueil" class="nav-link hover:text-primary transition-colors" data-page="accueil">Accueil</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-on-surface font-medium">Actualites</span>
+        </nav>
     </div>
 
-    <!-- ACTUALITÉS Page (Full List) -->
-    <div id="actualites" class="page">
-        <div class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="#accueil">Accueil</a> / Actualités
+    <section class="max-w-7xl mx-auto px-8 mt-4 mb-8">
+        <h1 class="font-headline text-4xl font-bold text-primary">Actualites de Jettingen</h1>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-8 pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Article Card 1 -->
+            <article class="bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow group hover:-translate-y-1 transition-transform duration-300">
+                <div class="aspect-[16/10] overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Travaux de voirie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdNcGb0XuBPsDHCTqGanMjkQzqYrtp4HSrkv1hxqpnkaj-jDh5GcY3B0XqFTzinrwb1MqZ_mGncvHOpiIi2Bj5ig0vgddgkWVhdTsz2cdGX_b0CcyDk11nKKlTc6tK_0lk1Q1tDLyZL119Z12qNb0p7WLEclUdXwLaJc7eK7G-MaoyDuYKRdvomOHwEG0yEsIAR9t1U6K84jtqvB-1nriG7LiW9H-MFqckUGT3gYSC6fy4xufEdfuO-VjRZY5WqcTaLOg6mBO-DdLp"/>
                 </div>
-                <h1>Actualités de Jettingen</h1>
-            </div>
-        </div>
-        <div class="page-content">
-            <div class="container">
-                <div class="articles-full-grid">
-                    <div class="news-card">
-                        <div class="news-image">📰</div>
-                        <div class="news-content">
-                            <span class="news-date">28 mars 2026</span>
-                            <span class="news-category">Travaux</span>
-                            <h3>Travaux rue de l'Ancienne-École</h3>
-                            <p class="news-excerpt">Des travaux de voirie sont en cours sur la rue de l'Ancienne-École. Accès limité du 30 mars au 15 avril. Merci de votre compréhension et de votre patience pendant la durée des travaux.</p>
-                            <a href="#" class="news-link">Lire la suite →</a>
-                        </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-secondary font-medium text-xs">28 MARS 2026</span>
+                        <span class="bg-secondary text-on-secondary text-xs font-semibold px-2 py-0.5 rounded-full">Travaux</span>
                     </div>
-                    <div class="news-card">
-                        <div class="news-image">📚</div>
-                        <div class="news-content">
-                            <span class="news-date">20 mars 2026</span>
-                            <span class="news-category">Éducation</span>
-                            <h3>Inscriptions École — Rentrée 2026</h3>
-                            <p class="news-excerpt">Les inscriptions pour la rentrée scolaire 2026 sont ouvertes. Veuillez contacter la mairie pour plus d'informations et pour procéder aux formalités d'inscription.</p>
-                            <a href="#" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-image">🎄</div>
-                        <div class="news-content">
-                            <span class="news-date">15 mars 2026</span>
-                            <span class="news-category">Événement</span>
-                            <h3>Marché de Noël — Save the Date</h3>
-                            <p class="news-excerpt">Première annonce : le traditionnel Marché de Noël de Jettingen aura lieu en décembre 2026. Programme complet à venir. Soyez au rendez-vous !</p>
-                            <a href="#" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-image">🌱</div>
-                        <div class="news-content">
-                            <span class="news-date">10 mars 2026</span>
-                            <span class="news-category">Environnement</span>
-                            <h3>Campagne de Sensibilisation au Tri</h3>
-                            <p class="news-excerpt">La commune lance une campagne de sensibilisation au tri sélectif. Nouveaux bacs et calendrier de collecte disponibles à la mairie.</p>
-                            <a href="#" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-image">🏊</div>
-                        <div class="news-content">
-                            <span class="news-date">01 mars 2026</span>
-                            <span class="news-category">Loisirs</span>
-                            <h3>Réouverture de la Piscine Municipale</h3>
-                            <p class="news-excerpt">La piscine municipale rouvrira ses portes le 1er mai 2026. Abonnements et tarifs à consulter auprès de la mairie dès maintenant.</p>
-                            <a href="#" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-image">🚴</div>
-                        <div class="news-content">
-                            <span class="news-date">15 février 2026</span>
-                            <span class="news-category">Transport</span>
-                            <h3>Itinéraires Cyclables — Appel à Contributions</h3>
-                            <p class="news-excerpt">La commune organise une consultation pour améliorer ses itinéraires cyclables. Vos suggestions sont les bienvenues via le formulaire en ligne.</p>
-                            <a href="#" class="news-link">Lire la suite →</a>
-                        </div>
-                    </div>
+                    <h3 class="font-headline text-xl font-semibold mb-2">Travaux rue de l'Ancienne-Ecole</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">Des travaux de voirie sont en cours sur la rue de l'Ancienne-Ecole. Acces limite du 30 mars au 15 avril. Merci de votre comprehension.</p>
+                    <span class="text-primary font-bold text-sm flex items-center gap-1">Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
                 </div>
-            </div>
+            </article>
+            <!-- Article Card 2 -->
+            <article class="bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow group hover:-translate-y-1 transition-transform duration-300">
+                <div class="aspect-[16/10] overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Inscriptions scolaires" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4QomZ3MbdEti0N8l9y3eWj5fywhRvLOS8YXWN22IgKRgmxsAl1Y6pUyInikypVSmwNWgpeZBI3Sjfmx6ykHgCR36dbJM-ZXpsJZI_9JxdYsz2-sBPfwdTF9KJbOi0FI1YNyzHXXpyg9wl1hVsCsB87cPj1tYqU7bl9LX99q6kF5tdtN8Nh7Pl5kRuAVQ5nK5KRfgNk5-85ucU0nq3N7OTcqJ8CcsQuxPo_rauISxZ9pER1bI2V8JKOiZI75PsHlSFLNrtuGasAai5"/>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-secondary font-medium text-xs">20 MARS 2026</span>
+                        <span class="bg-primary text-on-primary text-xs font-semibold px-2 py-0.5 rounded-full">Education</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-semibold mb-2">Inscriptions Ecole — Rentree 2026</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">Les inscriptions pour la rentree scolaire 2026 sont ouvertes. Veuillez contacter la mairie pour plus d'informations.</p>
+                    <span class="text-primary font-bold text-sm flex items-center gap-1">Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                </div>
+            </article>
+            <!-- Article Card 3 -->
+            <article class="bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow group hover:-translate-y-1 transition-transform duration-300">
+                <div class="aspect-[16/10] overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Marche de Noel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZDFV342aUlLGLRE7aNSJ1LHGdqvVp83NdPdkRZNqol26VowKlRQwAWIMLxa_QJG5SsRfvlcvBN2ZnifgqnZcsF1oQ_Mcb5rxvRW1rh7TSux1fHDqrJQiFQ5NdIOvz-EqO5vDmVt8q6t_EghnTgQRYaM6AEYPYsNPpebpYq88CKDD19Y90S0Zch2oCzpPAs1fjnF9VFm7kU0M5Pw8YsMpueUjC4ypUSEsUPZ56vENPveWoEEm8R0-esZwdFcEM85lPELv8Jg8D57nS"/>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-secondary font-medium text-xs">15 MARS 2026</span>
+                        <span class="bg-tertiary text-on-tertiary text-xs font-semibold px-2 py-0.5 rounded-full">Evenement</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-semibold mb-2">Marche de Noel — Save the Date</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">Premiere annonce : le traditionnel Marche de Noel de Jettingen aura lieu en decembre 2026. Programme a venir.</p>
+                    <span class="text-primary font-bold text-sm flex items-center gap-1">Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                </div>
+            </article>
+            <!-- Article Card 4 -->
+            <article class="bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow group hover:-translate-y-1 transition-transform duration-300">
+                <div class="aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary-fixed to-primary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-6xl text-on-primary/30">recycling</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-secondary font-medium text-xs">10 MARS 2026</span>
+                        <span class="bg-primary text-on-primary text-xs font-semibold px-2 py-0.5 rounded-full">Environnement</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-semibold mb-2">Campagne de Sensibilisation au Tri</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">La commune lance une campagne de sensibilisation au tri selectif. Nouveaux bacs et calendrier de collecte disponibles a la mairie.</p>
+                    <span class="text-primary font-bold text-sm flex items-center gap-1">Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                </div>
+            </article>
+            <!-- Article Card 5 -->
+            <article class="bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow group hover:-translate-y-1 transition-transform duration-300">
+                <div class="aspect-[16/10] overflow-hidden bg-gradient-to-br from-tertiary-fixed to-tertiary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-6xl text-on-tertiary/30">pool</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-secondary font-medium text-xs">01 MARS 2026</span>
+                        <span class="bg-tertiary text-on-tertiary text-xs font-semibold px-2 py-0.5 rounded-full">Loisirs</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-semibold mb-2">Reouverture de la Piscine Municipale</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">La piscine municipale rouvrira ses portes le 1er mai 2026. Abonnements et tarifs a consulter aupres de la mairie.</p>
+                    <span class="text-primary font-bold text-sm flex items-center gap-1">Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                </div>
+            </article>
+            <!-- Article Card 6 -->
+            <article class="bg-surface-container-lowest rounded-xl overflow-hidden editorial-shadow group hover:-translate-y-1 transition-transform duration-300">
+                <div class="aspect-[16/10] overflow-hidden bg-gradient-to-br from-secondary-fixed to-secondary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-6xl text-on-secondary/30">directions_bike</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-secondary font-medium text-xs">15 FEVRIER 2026</span>
+                        <span class="bg-secondary text-on-secondary text-xs font-semibold px-2 py-0.5 rounded-full">Transport</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-semibold mb-2">Itineraires Cyclables — Appel a Contributions</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-3">La commune organise une consultation pour ameliorer ses itineraires cyclables. Vos suggestions sont les bienvenues.</p>
+                    <span class="text-primary font-bold text-sm flex items-center gap-1">Lire la suite <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                </div>
+            </article>
         </div>
+    </main>
+</div>
+
+<!-- ========================================
+     CONTACT PAGE
+     ======================================== -->
+<div id="contact" class="page">
+    <div class="max-w-7xl mx-auto px-8 mt-6">
+        <nav class="text-sm text-on-surface-variant flex items-center gap-2">
+            <a href="#accueil" class="nav-link hover:text-primary transition-colors" data-page="accueil">Accueil</a>
+            <span class="material-symbols-outlined text-xs">chevron_right</span>
+            <span class="text-on-surface font-medium">Contact</span>
+        </nav>
     </div>
 
-    <!-- CONTACT Page -->
-    <div id="contact" class="page">
-        <div class="page-header">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="#accueil">Accueil</a> / Contact
+    <section class="max-w-7xl mx-auto px-8 mt-4 mb-8">
+        <h1 class="font-headline text-4xl font-bold text-primary">Nous Contacter</h1>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-8 pb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2">
+                <div class="bg-surface-container-lowest rounded-xl p-8 editorial-shadow">
+                    <h2 class="font-headline text-2xl font-semibold mb-6">Formulaire de Contact</h2>
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold mb-2">Nom *</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-colors text-sm"/>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-colors text-sm"/>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-sm font-semibold mb-2">Telephone</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-colors text-sm"/>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-semibold mb-2">Objet *</label>
+                                <input type="text" id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-colors text-sm"/>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-semibold mb-2">Message *</label>
+                            <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-colors text-sm resize-vertical"></textarea>
+                        </div>
+                        <button type="submit" class="bg-primary hover:bg-surface-tint text-on-primary px-8 py-3 rounded-md font-medium transition-all flex items-center gap-2 editorial-shadow">
+                            <span class="material-symbols-outlined">send</span> Envoyer
+                        </button>
+                    </form>
                 </div>
-                <h1>Nous Contacter</h1>
             </div>
-        </div>
-        <div class="page-content">
-            <div class="container">
-                <div class="content-grid">
-                    <div>
-                        <h2 style="margin-top: 0;">Formulaire de Contact</h2>
-                        <form class="contact-form">
-                            <div class="form-group">
-                                <label for="name">Nom *</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Téléphone</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Objet *</label>
-                                <input type="text" id="subject" name="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" name="message" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn">Envoyer</button>
-                            </div>
-                        </form>
+
+            <aside class="space-y-6">
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Mairie</h3>
+                    <div class="space-y-3 text-sm text-on-surface-variant">
+                        <p class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-base mt-0.5">location_on</span> 58 rue de la Fontaine<br/>68130 Jettingen</p>
                     </div>
-                    <aside class="sidebar">
-                        <div class="sidebar-box">
-                            <h3>Mairie</h3>
-                            <p><strong>Adresse:</strong><br>58 rue de la Fontaine<br>68130 Jettingen</p>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3>Téléphone & Email</h3>
-                            <p><strong>Tél:</strong><br><a href="tel:+33389406020">03 89 40 60 20</a></p>
-                            <p><strong>Email:</strong><br><a href="mailto:mairie@jettingen.fr">mairie@jettingen.fr</a></p>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3>Horaires</h3>
-                            <p><strong>Lun-Ven:</strong> 9h-12h<br><strong>Mar-Jeu:</strong> 14h-17h<br><strong>Fermé:</strong> Mercredi après-midi, week-end</p>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3>Plan d'Accès</h3>
-                            <div class="map-placeholder">Carte interactive</div>
-                        </div>
-                    </aside>
                 </div>
-            </div>
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Telephone & Email</h3>
+                    <div class="space-y-3 text-sm text-on-surface-variant">
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">call</span> <a href="tel:+33389406020" class="hover:text-primary transition-colors">03 89 40 60 20</a></p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">mail</span> <a href="mailto:mairie@jettingen.fr" class="hover:text-primary transition-colors">mairie@jettingen.fr</a></p>
+                    </div>
+                </div>
+                <div class="bg-surface-container-high rounded-xl p-6">
+                    <h3 class="font-headline text-lg font-semibold mb-4 border-b border-outline-variant/30 pb-3">Horaires</h3>
+                    <div class="text-sm text-on-surface-variant space-y-1">
+                        <p><strong>Lun-Ven :</strong> 9h-12h</p>
+                        <p><strong>Mar-Jeu :</strong> 14h-17h</p>
+                        <p><strong>Ferme :</strong> Mercredi apres-midi, week-end</p>
+                    </div>
+                </div>
+                <div class="bg-surface-container rounded-xl p-6 h-[200px] flex items-center justify-center">
+                    <div class="text-center text-on-surface-variant">
+                        <span class="material-symbols-outlined text-4xl mb-2">map</span>
+                        <p class="text-sm">Carte interactive</p>
+                    </div>
+                </div>
+            </aside>
         </div>
+    </main>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-stone-200 mt-12 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-12 max-w-7xl mx-auto font-body text-sm leading-relaxed">
+    <div class="space-y-4">
+        <span class="font-headline text-lg font-bold text-primary">Jettingen</span>
+        <p class="text-stone-600">
+            58 rue de la Fontaine<br/>
+            68130 Jettingen<br/>
+            Haut-Rhin, Alsace<br/><br/>
+            Tel : <a href="tel:+33389406020" class="hover:text-primary transition-colors">03 89 40 60 20</a><br/>
+            Email : <a href="mailto:mairie@jettingen.fr" class="hover:text-primary transition-colors">mairie@jettingen.fr</a>
+        </p>
     </div>
+    <div class="space-y-4">
+        <h4 class="font-bold text-primary">Navigation</h4>
+        <ul class="space-y-2">
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#accueil" data-page="accueil">Accueil</a></li>
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#commune" data-page="commune">La Commune</a></li>
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#mairie" data-page="mairie">Mairie & Demarches</a></li>
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#vie" data-page="vie">Vie Quotidienne</a></li>
+        </ul>
+    </div>
+    <div class="space-y-4">
+        <h4 class="font-bold text-primary">Decouvrir</h4>
+        <ul class="space-y-2">
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#actualites" data-page="actualites">Actualites</a></li>
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#commune" data-page="commune">Histoire du village</a></li>
+            <li><a class="nav-link text-stone-600 hover:text-primary transition-colors" href="#commune" data-page="commune">Patrimoine</a></li>
+        </ul>
+    </div>
+    <div class="space-y-4">
+        <h4 class="font-bold text-primary">Informations</h4>
+        <ul class="space-y-2">
+            <li><a class="text-stone-600 hover:text-primary transition-colors" href="#">Accessibilite (RGAA)</a></li>
+            <li><a class="text-stone-600 hover:text-primary transition-colors" href="#">Mentions Legales</a></li>
+            <li><a class="text-stone-600 hover:text-primary transition-colors" href="#">Politique de Confidentialite</a></li>
+            <li><a class="text-stone-600 hover:text-primary transition-colors" href="#">Plan du Site</a></li>
+        </ul>
+    </div>
+</div>
+<div class="max-w-7xl mx-auto px-12 mt-12 pt-8 border-t border-stone-300 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-stone-500 text-xs">&copy; 2026 Commune de Jettingen - Village du Sundgau. Tous droits reserves.</p>
+    <p class="text-stone-400 text-xs">RGPD : Vos donnees personnelles sont protegees conformement a la reglementation.</p>
+    <div class="flex gap-6">
+        <a href="#" class="text-primary hover:scale-110 transition-transform" title="Facebook"><span class="material-symbols-outlined">share</span></a>
+        <a href="mailto:mairie@jettingen.fr" class="text-primary hover:scale-110 transition-transform" title="Email"><span class="material-symbols-outlined">mail</span></a>
+    </div>
+</div>
+</footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Mairie de Jettingen</h3>
-                <p>58 rue de la Fontaine<br>68130 Jettingen<br>Haut-Rhin, Alsace</p>
-                <p style="margin-top: 1rem; font-size: 0.9rem;">Tél: <a href="tel:+33389406020">03 89 40 60 20</a><br>Email: <a href="mailto:mairie@jettingen.fr">mairie@jettingen.fr</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#commune">La Commune</a></li>
-                    <li><a href="#mairie">Mairie & Démarches</a></li>
-                    <li><a href="#vie">Vie Quotidienne</a></li>
-                    <li><a href="#actualites">Actualités</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Informations</h3>
-                <ul>
-                    <li><a href="#contact">Nous contacter</a></li>
-                    <li><a href="#">Mentions Légales</a></li>
-                    <li><a href="#">Politique de Confidentialité</a></li>
-                    <li><a href="#">Accessibilité</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Commune de Jettingen. Tous droits réservés.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.7;">RGPD: Vos données personnelles sont protégées conformément à la réglementation. <a href="#" style="color: var(--accent);">En savoir plus</a></p>
-            <div class="footer-social">
-                <a href="#" title="Facebook">f</a>
-                <a href="#" title="Twitter">𝕏</a>
-                <a href="#" title="Instagram">📷</a>
-            </div>
-        </div>
-    </footer>
+<script>
+    // ===== NAVIGATION & ROUTING =====
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const desktopNav = document.getElementById('desktopNav');
 
-    <script>
-        // ===== NAVIGATION & ROUTING =====
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
+    // Mobile menu toggle
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+    });
 
-        // Hamburger menu toggle
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu on nav link click
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-
-                // Update active link
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-
-        // Page routing
-        function showPage(pageId) {
-            pages.forEach(page => page.classList.remove('active'));
-            const page = document.getElementById(pageId);
-            if (page) {
-                page.classList.add('active');
-                window.scrollTo(0, 0);
-            }
+    // Page routing
+    function showPage(pageId) {
+        pages.forEach(page => page.classList.remove('active'));
+        const page = document.getElementById(pageId);
+        if (page) {
+            page.classList.add('active');
+            window.scrollTo(0, 0);
         }
 
-        // Hash-based routing
-        window.addEventListener('hashchange', () => {
-            const pageId = window.location.hash.slice(1) || 'accueil';
-            showPage(pageId);
+        // Update active nav state
+        const desktopLinks = desktopNav.querySelectorAll('.nav-link');
+        desktopLinks.forEach(link => {
+            link.className = link.dataset.page === pageId
+                ? 'nav-link text-orange-700 border-b-2 border-orange-700 pb-1'
+                : 'nav-link text-stone-600 font-medium hover:text-primary transition-colors duration-200';
         });
 
-        // Initial page load
-        const initialPage = window.location.hash.slice(1) || 'accueil';
-        showPage(initialPage);
+        // Close mobile menu
+        mobileMenu.classList.add('hidden');
+        hamburgerBtn.textContent = 'menu';
+    }
 
-        // ===== SCROLL ANIMATIONS =====
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section-animate').forEach(section => {
-            observer.observe(section);
-        });
-
-        // ===== UTILITY FUNCTIONS =====
-        function scrollToSection(sectionId) {
-            showPage(sectionId);
-            window.location.hash = sectionId;
-        }
-
-        // Form submission (visual only)
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
+    // Handle nav link clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const pageId = link.dataset.page;
+            if (pageId) {
                 e.preventDefault();
-                alert('Merci pour votre message! La mairie vous répondra dans les plus brefs délais.');
-                contactForm.reset();
-            });
-        }
+                window.location.hash = pageId;
+            }
+        });
+    });
 
-        // ===== DARK MODE SUPPORT =====
-        // Dark mode is automatically handled by CSS media queries
-        // No additional JS needed - browser handles prefers-color-scheme
-    </script>
-</body>
-</html>
+    // Hash-based routing
+    window.addEventListener('hashchange', () => {
+        const pageId = window.location.hash.slice(1) || 'accueil';
+        showPage(pageId);
+    });
+
+    // Initial page load
+    const initialPage = window.location.hash.slice(1) || 'accueil';
+    showPage(initialPage);
+
+    // Form submission (visual only)
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci pour votre message ! La mairie vous repondra dans les plus brefs delais.');
+            contactForm.reset();
+        });
+    }
+</script>
+</body></html>
